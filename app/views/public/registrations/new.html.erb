@@ -1,29 +1,68 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="page-title">
+    <h4>新規会員登録</h4>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <table class="table table-borderless">
+    <%= form_with model: @customer, url: customer_registration_path do |f| %>
+      <tr>
+        <th class="first-td">名前</th>
+        <th class="second-td">(姓)</th>
+        <td class="third-td"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "令和", class: 'registration-input' %></td>
+        <th class="fourth-td">(名)</th>
+        <td class="fifth-td"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "道子", class: 'registration-input' %></td>
+      </tr>
+      <tr>
+        <th>フリガナ</th>
+        <th>(セイ)</th>
+        <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", placeholder: "レイワ", class: 'registration-input' %></td>
+        <th>(メイ)</th>
+        <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", placeholder: "ミチコ", class: 'registration-input' %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <th></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'registration-input' %></td>
+      </tr>
+      <tr>
+        <th>郵便番号(ハイフンなし)</th>
+        <th></th>
+        <td><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000", class: 'registration-input' %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <th></th>
+        <td colspan="3"><%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "東京都渋谷区代々木神園町0-0", class: 'address-input' %></td>
+      </tr>
+      <tr>
+        <th>電話番号(ハイフンなし)</th>
+        <th></th>
+        <td><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", placeholder: "00000000000", class: 'registration-input' %></td>
+      </tr>
+      <tr>
+        <th>パスワード(<%= @minimum_password_length %>文字以上)</th>
+        <th></th>
+        <td><%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'registration-input' %></td>
+      </tr>
+      <tr>
+        <th>パスワード(確認用)</th>
+        <th></th>
+        <td><%= f.text_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: 'registration-input' %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <td><%= f.submit "新規登録", class: "btn btn-success registration-input" %></td>
+      </tr>
+    <% end %>
+  </table>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="page-title" style="width:300px;">
+    <h4>既に登録済みの方</h4>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="login-link">
+    <p><%= render "public/shared/links" %>からログインしてください。</p>
   </div>
-<% end %>
+</div>
 
-<%= render "public/shared/links" %>
+

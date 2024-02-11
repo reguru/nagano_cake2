@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page-title {
+  margin: 30px;
+  background-color: #eeeeee;
+  width: 200px;
+  text-align: center;
+}
+
+.login-link {
+  margin-left: 100px;
+}
+
+.signup-link {
+  margin-left: 200px;
+}
+
+//table-------------------------------------------------------
+
+.table {
+  td {
+    padding: 0.55rem;
+  }
+  th {
+    padding: 0.55rem;
+  }
+}
+
+.registration-input {
+  width: 85%;
+  height: 35px;
+}
+
+.address-input {
+  width: 95%;
+  height: 35px;
+}
+
+.first-td {
+  width: 20%;
+}
+
+.second-td {
+  width: 5%;
+}
+
+.third-td {
+  width: 30%;
+}
+
+.fourth-td {
+  width: 5%;
+}
+
+.fifth-td {
+  width: 30%;
+}
+
+.session-table {
+  margin-left: 130px;
+}
+
+//---------------------------------------------------------
+
+.button1 {
+  width: 200px;
+}
