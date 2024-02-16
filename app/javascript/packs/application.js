@@ -14,6 +14,7 @@ import "bootstrap";
 import "../stylesheets/application";
 import "../stylesheets/mystyle.scss"
 import "../stylesheets/homes.scss"
+import "../stylesheets/genres.scss"
 
 Rails.start()
 Turbolinks.start()
