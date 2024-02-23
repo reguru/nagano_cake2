@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row mt-4">
-    <div class="col-2">
+    <div class="col-lg-2">
       <%= render 'public/homes/genre', genres: @genres %>
     </div>
 
-    <div class="col-8">
+    <div class="col-lg-8">
       <div class="top-int">
         <p>ようこそ、ながのCAKEへ！</p>
         <p>このサイトは、ケーキ販売のECサイトになります。</p>
@@ -15,11 +15,23 @@
   </div>
 
   <div class="row my-3">
-    <div class="col-2"></div>
-    <div class="col-10">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-9">
       <h4>新着商品</h4>
     </div>
+  </div>
 
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <% @items.each do |item| %>
+      <div class="col-lg-2">
+        <%= link_to item_path(item), class: 'top-link' do %>
+          <%= image_tag item.get_image, class: 'top-item-image' %>
+          <p class="ml-3 text-dark"><%= item.name %></p>
+          <p class="ml-3 text-dark">¥<%= item.price %></p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
 </div>
