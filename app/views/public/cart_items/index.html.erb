@@ -1,2 +1,61 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="page-title mt-5">
+        <h4>注文履歴一覧</h4>
+      </div>
+    </div>
+    <div class="col-lg-2 mt-5">
+      <%= link_to 'カートを空にする', cart_items_destroy_all_path, class: 'btn btn-danger' %>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @cart_items.each do |cart_item| %>
+      <tbody>
+        <tr>
+          <td><%= image_tag cart_item.item.get_image, class: 'cart-item-image mr-3' %><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.with_tax_price %></td>
+          <td>
+            <%= form_with model: cart_item do |f| %>
+              <%= f.select :amount, *[1..10] %>
+              <%= f.submit '変更', class: 'btn btn-success' %>
+            <% end %>
+          </td>
+          <td><%= cart_item.subtotal %></td>
+          <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
+        </tr>
+      </tbody>
+      <% @total =+ cart_item.subtotal %>
+    <% end %>
+  </table>
+
+  <div class="row mt-5">
+    <div class="col-lg-3">
+      <%= link_to '買い物を続ける', root_path, class: 'btn btn-primary' %>
+    </div>
+    <div class="col-lg-6"></div>
+    <div class="col-lg-3">
+      <table class="table">
+        <tr>
+          <th>合計金額</th>
+          <td><%= @total %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= link_to '情報入力に進む', new_order_path, class: 'btn btn-success' %>
+  </div>
+
+</div>

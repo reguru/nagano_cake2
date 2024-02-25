@@ -1,2 +1,25 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-2">
+      <%= render 'public/homes/genre', genres: @genres %>
+    </div>
+
+    <div class="col-lg-10">
+      <h4>商品一覧(全<%= @items.count %>件)</h4>
+
+      <div class="row mt-3">
+        <% @items.each do |item| %>
+          <div class="col-lg-3">
+            <%= link_to item_path(item), class: 'top-link' do %>
+              <%= image_tag item.get_image, class: 'index-item-image' %>
+              <p class="ml-3 text-dark"><%= item.name %></p>
+              <p class="ml-3 text-dark"><%= item.price %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+</div>

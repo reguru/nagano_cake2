@@ -16,6 +16,7 @@ import "../stylesheets/mystyle.scss"
 import "../stylesheets/homes.scss"
 import "../stylesheets/genres.scss"
 import "../stylesheets/items.scss"
+import "../stylesheets/cart_items.scss"
 
 Rails.start()
 Turbolinks.start()
