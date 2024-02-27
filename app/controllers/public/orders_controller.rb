@@ -10,7 +10,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-
+    
   end
 
   def comfirm
@@ -20,10 +20,10 @@ class Public::OrdersController < ApplicationController
   def complete
 
   end
-
+  
   private
-
+  
   def order_params
-
+    params.require(:order).permit(:address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
 end
