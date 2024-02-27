@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
   def new
+    @order = Order.new
   end
 
   def index
@@ -17,6 +18,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+
+  end
+
+  private
+
+  def order_params
 
   end
 end

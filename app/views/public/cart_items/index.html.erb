@@ -2,15 +2,15 @@
   <div class="row">
     <div class="col-lg-10">
       <div class="page-title mt-5">
-        <h4>注文履歴一覧</h4>
+        <h5>ショッピングカート</h5>
       </div>
     </div>
     <div class="col-lg-2 mt-5">
-      <%= link_to 'カートを空にする', cart_items_destroy_all_path, class: 'btn btn-danger' %>
+      <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete,class:'btn btn-danger' %>
     </div>
   </div>
 
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>商品名</th>
@@ -32,10 +32,10 @@
             <% end %>
           </td>
           <td><%= cart_item.subtotal %></td>
-          <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
+          <td class="text-center"><%= link_to '削除する', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
         </tr>
       </tbody>
-      <% @total =+ cart_item.subtotal %>
+      <% @total += cart_item.subtotal %>
     <% end %>
   </table>
 
@@ -45,7 +45,7 @@
     </div>
     <div class="col-lg-6"></div>
     <div class="col-lg-3">
-      <table class="table">
+      <table class="table table-bordered">
         <tr>
           <th>合計金額</th>
           <td><%= @total %></td>
