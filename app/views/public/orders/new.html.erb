@@ -6,4 +6,70 @@
       </div>
     </div>
   </div>
+
+  <div>
+    <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
+      <h5><strong>支払方法</strong></h5>
+      <div class="ml-5">
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %><br>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %>
+      </div>
+
+      <h5><strong>お届け先</strong></h5>
+      <div class="ml-5">
+        <%= f.radio_button :address_number, 1 %>
+        <%= f.label :address_number_1, "ご自身の住所" %>
+        <div class="ml-4 row">
+          〒<%= current_customer.postal_code %>
+          <%= current_customer.address %><br>
+          <%= current_customer.last_name %>
+          <%= current_customer.first_name %>
+        </div>
+      </div>
+
+      <div class="ml-5">
+        <%= f.radio_button :address_number, 2 %>
+        <%= f.label :address_number_2, "登録済住所から選択" %>
+        <p class="ml-4 row">
+          <%= f.select :address_number_2, options_from_collection_for_select(Address.all, :id, :address_display) %>
+        </p>
+      </div>
+
+      <div class="ml-5">
+        <%= f.radio_button :address_number, 3 %>
+        <%= f.label :address_number_3, "新しいお届け先" %>
+        <div class="ml-3 row">
+          <div class="col-lg-3">
+            <%= f.label :"郵便番号(ハイフンなし)" %>
+          </div>
+          <div class="col-lg-5">
+            <%= f.text_field :postal_code %>
+          </div>
+        </div>
+
+        <div class="ml-3 row">
+          <div class="col-lg-3">
+            <%= f.label :"住所" %>
+          </div>
+          <div class="col-lg-8">
+            <%= f.text_field :address, :size => '60' %>
+          </div>
+        </div>
+
+        <div class="ml-3 row">
+          <div class="col-lg-3">
+            <%= f.label :"宛名" %>
+          </div>
+          <div class="col-lg-5">
+            <%= f.text_field :name %>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <%= f.submit "確認画面へ進む", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
 </div>
