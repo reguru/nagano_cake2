@@ -20,10 +20,13 @@
         <th></th>
       </tr>
     </thead>
-    <% @cart_items.each do |cart_item| %>
-      <tbody>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= image_tag cart_item.item.get_image, class: 'cart-item-image mr-3' %><%= cart_item.item.name %></td>
+          <td>
+            <%= image_tag cart_item.item.get_image, class: 'cart-item-image mr-3' %>
+            <%= cart_item.item.name %>
+          </td>
           <td><%= cart_item.item.with_tax_price %></td>
           <td>
             <%= form_with model: cart_item do |f| %>
@@ -34,9 +37,11 @@
           <td><%= cart_item.subtotal %></td>
           <td class="text-center"><%= link_to '削除する', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
         </tr>
-      </tbody>
-      <% @total += cart_item.subtotal %>
-    <% end %>
+        <% @total += cart_item.subtotal %>
+      <% end %>
+    </tbody>
+
+
   </table>
 
   <div class="row mt-5">

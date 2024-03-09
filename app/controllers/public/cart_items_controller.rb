@@ -8,13 +8,13 @@ class Public::CartItemsController < ApplicationController
       @cart_item = CartItem.new(cart_item_params)
       @cart_item.customer_id = current_customer.id
     end
-    
+
     @cart_item.save
     redirect_to cart_items_path
   end
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
     @total = 0
   end
 
