@@ -35,6 +35,8 @@ class Public::OrdersController < ApplicationController
       render :new
     end
 
+    @cart_items = CartItem.find_by(customer_id: current_customer.id)
+    @total = 0
   end
 
   def complete
