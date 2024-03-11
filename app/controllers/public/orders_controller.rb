@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
@@ -21,7 +22,6 @@ class Public::OrdersController < ApplicationController
         order_detail.price = cart_item.item.with_tax_price
         order_detail.amount = cart_item.amount
         order_detail.save
-        binding.pry
       end
       @cart_items.destroy_all
       redirect_to orders_complete_path
