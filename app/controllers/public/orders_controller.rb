@@ -12,8 +12,22 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.save
-    redirect_to orders_complete_path
+    if @order.save
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.order_id = @order.id
+        order_detail.item_id = cart_item.id
+        order_detail.price = cart_item.item.with_tax_price
+        order_detail.amount = cart_item.amount
+        order_detail.save
+        binding.pry
+      end
+      @cart_items.destroy_all
+      redirect_to orders_complete_path
+    else
+      render :confirm
+    end
   end
 
   def confirm
