@@ -1,2 +1,51 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="page-title mt-5">
+        <h4>会員情報編集</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10">
+      <table class="table table-borderless">
+        <%= form_with model: @customer, url: customers_information_path do |f| %>
+          <tr>
+            <th style="width:25%">名前</th>
+            <td style="width:35%"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: 'registration-input' %></td>
+            <td style="width:35%"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'registration-input' %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: 'registration-input' %></td>
+            <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: 'registration-input' %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: 'registration-input' %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td colspan="3"><%= f.text_field :address, autofocus: true, autocomplete: "address", class: 'address-input' %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: 'registration-input' %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'registration-input' %></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td class="d-flex flex-row">
+              <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+              <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
