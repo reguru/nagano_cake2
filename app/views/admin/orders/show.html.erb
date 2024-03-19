@@ -55,7 +55,7 @@
               <td><%= order_detail.amount %></td>
               <td><%= order_detail.price * order_detail.amount %></td>
               <td>
-                <%= form_with model: @order_detail, url: admin_order_path(order_detail) do |f| %>
+                <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
                   <%= f.select :making_status, OrderDetail.making_statuses.keys %>
                   <%= f.submit "更新", class: 'btn btn-success' %>
                 <% end %>
