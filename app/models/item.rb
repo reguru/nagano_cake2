@@ -4,6 +4,9 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_many :order_details, dependent: :destroy
 
+  validates :name, presence: true
+  validates :price, presence: true
+
   has_one_attached :image
 
   def get_image
