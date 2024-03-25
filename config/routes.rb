@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get '/' => 'homes#top'
+    get "/" => "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
@@ -9,27 +9,27 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    root to: 'homes#top'
-    get '/about' => 'homes#about', as: 'about'
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    root to: "homes#top"
+    get "/about" => "homes#about", as: "about"
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :create]
-    post 'orders/confirm' => 'orders#confirm'
-    get 'orders/complete' => 'orders#complete'
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
     resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    get 'customers/mypage' => 'customers#show'
-    get 'customers/information/edit' => 'customers#edit'
-    patch 'customers/information' => 'customers#update'
-    get 'customers/unsubscribe' => 'customers#unsubscribe'
-    patch 'customers/withdraw' => 'customers#withdraw'
+    get "customers/mypage" => "customers#show"
+    get "customers/information/edit" => "customers#edit"
+    patch "customers/information" => "customers#update"
+    get "customers/unsubscribe" => "customers#unsubscribe"
+    patch "customers/withdraw" => "customers#withdraw"
   end
 
-  devise_for :admin,skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
 
-  devise_for :customers,skip: [:passwords], controllers: {
+  devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }

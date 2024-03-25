@@ -1,13 +1,12 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def new
     @order = Order.new
   end
 
   def index
     @orders = current_customer.orders
-
   end
 
   def show
@@ -59,16 +58,13 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items.all
     @total = 0
-
   end
 
   def complete
-
   end
 
   private
-
-  def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
-  end
+    def order_params
+      params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    end
 end
